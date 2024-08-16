@@ -11,8 +11,8 @@ Envio do R1:
 Envio do R2:
 ![image](https://github.com/user-attachments/assets/32fd4028-b473-49d4-873f-dca321c1bbd3)
 
-Envio da Mensagem encriptografa (Texto plain deve ser: "Isso é um teste muito legal"):
-![image](https://github.com/user-attachments/assets/78dae397-c587-4008-b6d5-c49da584b303)
+Envio da Mensagem encriptografa (Texto plain deve ser: "Isso é um teste"):
+![image](https://github.com/user-attachments/assets/c37cc749-25ce-4b37-9bfe-d9502f9dbc47)
 
-Envio da Mensagem recebida formatada (Texto plain deve ser: "ISSO É UM TESTE MUITO LEGAL"):
-![image](https://github.com/user-attachments/assets/ebb16808-79f1-4f3f-8699-2f2b38288807)
+Envio da Mensagem recebida formatada (Texto plain deve ser: "ISSO É UM TESTE"):
+![image](https://github.com/user-attachments/assets/85ffd152-5392-4e02-84d1-acf3ec0f745b)
