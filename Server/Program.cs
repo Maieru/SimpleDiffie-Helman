@@ -56,7 +56,7 @@ while (true)
 
     foreach (var character in decryptedText)
     {
-        if (char.IsDigit(character))
+        if (char.IsLetter(character))
             response += character.ToString().ToUpper();
         else
             response += character;
