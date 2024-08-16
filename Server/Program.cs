@@ -9,10 +9,6 @@ int? port = null;
 
 const int serverX = 91;
 
-const int commomG = 17;
-var commomGBytes = Encoding.UTF8.GetBytes(commomG.ToString());
-const int commomN = 127;
-var commomNBytes = Encoding.UTF8.GetBytes(commomN.ToString());
 var buffer = new byte[1024];
 
 while (!port.HasValue)
@@ -23,9 +19,9 @@ while (!port.HasValue)
         port = portCerta;
 }
 
-IPHostEntry host = Dns.GetHostEntry("localhost");
+IPHostEntry host = Dns.GetHostEntry("10.1.70.25");
 IPAddress ipAddress = host.AddressList[0];
-IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port.Value);
 
 var ceaserEncoder = new CeaserEncoder(5);
 var ceaserDecoder = new CeaserDecoder(5);
@@ -36,7 +32,7 @@ using Socket listener = new(
     ProtocolType.Tcp);
 
 listener.Bind(localEndPoint);
-listener.Listen(10);
+listener.Listen();
 var handler = await listener.AcceptAsync();
 
 var r1 = Diffle_Helman.CalculateR(serverX);

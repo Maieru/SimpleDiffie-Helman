@@ -25,9 +25,9 @@ while (!port.HasValue)
 Console.WriteLine("Pressione qualquer tecla quando o servidor estiver pronto!");
 Console.ReadKey();
 
-IPHostEntry hostEntry = Dns.GetHostEntry("localhost");
+IPHostEntry hostEntry = Dns.GetHostEntry(host);
 IPAddress ipAddress = hostEntry.AddressList[0];
-IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
+IPEndPoint remoteEP = new IPEndPoint(ipAddress, port.Value);
 
 using Socket client = new(
     ipAddress.AddressFamily,
