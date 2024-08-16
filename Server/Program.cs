@@ -7,7 +7,7 @@ using System.Text;
 Console.WriteLine("Digite a porta do servidor TCP");
 int? port = null;
 
-const int serverX = 91;
+const int serverX = 3;
 
 var buffer = new byte[1024];
 
@@ -19,12 +19,9 @@ while (!port.HasValue)
         port = portCerta;
 }
 
-IPHostEntry host = Dns.GetHostEntry("10.1.70.25");
+IPHostEntry host = Dns.GetHostEntry("localhost");
 IPAddress ipAddress = host.AddressList[0];
 IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port.Value);
-
-var ceaserEncoder = new CeaserEncoder(5);
-var ceaserDecoder = new CeaserDecoder(5);
 
 using Socket listener = new(
     ipAddress.AddressFamily,
@@ -39,9 +36,12 @@ var r1 = Diffle_Helman.CalculateR(serverX);
 await handler.SendAsync(Encoding.UTF8.GetBytes(r1.ToString()));
 
 var receivedR = await handler.ReceiveAsync(buffer, 0);
-var r2 = Convert.ToInt32(Encoding.UTF8.GetString(buffer));
+var r2 = Convert.ToUInt64(Encoding.UTF8.GetString(buffer));
 
-var key = Diffle_Helman.CalculateK(serverX, r1);
+var key = Diffle_Helman.CalculateK(serverX, r2);
+
+var ceaserEncoder = new CeaserEncoder(key);
+var ceaserDecoder = new CeaserDecoder(key);
 
 Console.WriteLine("Pode iniciar o client");
 

@@ -5,10 +5,7 @@ using System.Text;
 
 Console.WriteLine("Digite o IP do servidor TCP");
 var host = Console.ReadLine();
-const int clientY = 19;
-
-int g;
-int n;
+const int clientY = 6;
 
 Console.WriteLine("Digite a porta do servidor TCP");
 int? port = null;
@@ -44,13 +41,13 @@ var r1 = Convert.ToUInt64(Encoding.UTF8.GetString(buffer));
 var r2 = Diffle_Helman.CalculateR(clientY);
 await client.SendAsync(Encoding.UTF8.GetBytes(r2.ToString()));
 
-var key = Diffle_Helman.CalculateK(clientY, r2);
+var key = Diffle_Helman.CalculateK(clientY, r1);
 
 Console.WriteLine("Digite a mensagem para enviar: ");
 var mensagemParaEnviar = Console.ReadLine();
 
-var ceaserEncoder = new CeaserEncoder(5);
-var ceaserDecoder = new CeaserDecoder(5);
+var ceaserEncoder = new CeaserEncoder(key);
+var ceaserDecoder = new CeaserDecoder(key);
 
 var encryptedMessage = ceaserEncoder.Encode(mensagemParaEnviar);
 
